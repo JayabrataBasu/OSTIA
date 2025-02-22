@@ -1,23 +1,19 @@
 // src/core/OSTIA.hpp
 #pragma once
-#include <memory>
 #include <string>
-
-namespace OSTIA {
+#include <unordered_map>
+#include <vector>
 
 class OSTIA {
-private:
-  class Implementation;
-  std::unique_ptr<Implementation> pImpl; // PIMPL idiom for better encapsulation
-
 public:
   OSTIA();
-  ~OSTIA();
+  std::string processCommand(const std::string &command);
 
-  // Core methods
-  void processCommand(const std::string &command);
-  void initialize();
-  bool isReady() const;
+private:
+  std::unordered_map<std::string, std::string> systemState;
+  std::vector<std::string> modules;
+
+  void loadModules();
+  void updateState(const std::string &key, const std::string &value);
+  std::string getState(const std::string &key) const;
 };
-
-} // namespace OSTIA

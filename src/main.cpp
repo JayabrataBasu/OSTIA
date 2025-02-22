@@ -1,35 +1,45 @@
-#include "utils/Logger.hpp"
+// src/main.cpp
+#include "core/OSTIA.hpp"
 #include <iostream>
+#include <string>
 
-using namespace OSTIA::Utils;
 
 int main() {
-  Logger::info("Starting OSTIA...");
+  OSTIA ostia;
+  std::string input;
 
-  try {
-    Logger::debug("Initializing systems...");
-    // Future initialization code will go here
+  // Test commands
+  std::vector<std::string> testCommands = {
+      "set state test_key test_value",       "get state test_key",
+      "set state another_key another_value", "get state another_key",
+      "get state non_existent_key",          "invalid command"};
 
-    Logger::info("OSTIA is ready.");
+  for (const auto &command : testCommands) {
+    std::cout << "OSTIA> " << command << std::endl;
+    try {
+      std::string output = ostia.processCommand(command);
+      std::cout << "Output: " << output << std::endl;
+    } catch (const std::exception &e) {
+      std::cerr << "Error: " << e.what() << std::endl;
+    }
+    std::cout << std::endl;
+  }
 
-    // Basic command loop
-    std::string input;
-    while (true) {
-      std::cout << "\nOSTIA> ";
-      std::getline(std::cin, input);
+  // Interactive mode
+  while (true) {
+    std::cout << "OSTIA> ";
+    std::getline(std::cin, input);
 
-      if (input == "exit" || input == "quit") {
-        Logger::info("Shutting down OSTIA...");
-        break;
-      }
-
-      // Future command processing will go here
-      Logger::debug("Received command: " + input);
+    if (input == "exit") {
+      break;
     }
 
-  } catch (const std::exception &e) {
-    Logger::error("An error occurred: " + std::string(e.what()));
-    return 1;
+    try {
+      std::string output = ostia.processCommand(input);
+      std::cout << output << std::endl;
+    } catch (const std::exception &e) {
+      std::cerr << "Error: " << e.what() << std::endl;
+    }
   }
 
   return 0;

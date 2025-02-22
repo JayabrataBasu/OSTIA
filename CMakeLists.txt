@@ -24,6 +24,8 @@ add_executable(OSTIA_main
     src/main.cpp
     src/utils/Logger.cpp
     src/core/CommandProcessor.cpp
+    src/core/NLPEngine.cpp
+    src/core/OSTIA.cpp
 )
 
 # Add include directories
