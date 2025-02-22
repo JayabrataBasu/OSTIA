@@ -1,0 +1,22 @@
+# .gitignore
+# Build directories
+src/output/
+build/
+out/
+
+# IDE specific files
+.vscode/
+.vs/
+*.user
+*.suo
+
+# Compiled files
+*.exe
+*.obj
+*.dll
+*.pdb
+
+# CMake build files
+CMakeFiles/
+CMakeCache.txt
+*.cmake

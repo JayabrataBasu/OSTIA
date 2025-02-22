@@ -1,0 +1,33 @@
+OSTIA/
+├── CMakeLists.txt               # Main CMake configuration
+├── LICENSE
+├── README.md
+├── docs/                        # Documentation directory
+│   ├── design.md               # System design documentation
+│   └── setup.md                # Setup and build instructions
+├── libs/                        # Third-party libraries
+│   └── README.md               # Information about required libraries
+├── src/
+│   ├── main.cpp                # Application entry point
+│   ├── core/                   # Core functionality
+│   │   ├── OSTIA.hpp          # Main class header
+│   │   ├── OSTIA.cpp          # Main class implementation
+│   │   ├── NLPEngine.hpp      # Natural Language Processing
+│   │   ├── NLPEngine.cpp
+│   │   ├── KnowledgeBase.hpp  # Knowledge storage and retrieval
+│   │   ├── KnowledgeBase.cpp
+│   │   ├── TaskManager.hpp    # Task management system
+│   │   └── TaskManager.cpp
+│   ├── output/                 # Build outputs (should be in .gitignore)
+│   │   └── main.exe
+│   └── utils/                  # Utility functions
+│       ├── Logger.hpp         # Logging functionality
+│       ├── Logger.cpp
+│       ├── StringUtils.hpp    # String manipulation utilities
+│       └── StringUtils.cpp
+└── tests/                      # Test directory
+    ├── CMakeLists.txt         # Test-specific CMake configuration
+    ├── test_main.cpp          # Test runner
+    ├── test_NLPEngine.cpp     # NLP tests
+    └── test_TaskManager.cpp   # Task Manager tests
+
