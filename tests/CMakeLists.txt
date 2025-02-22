@@ -1,16 +1,15 @@
-cmake_minimum_required(VERSION 3.15)
+find_package(doctest CONFIG REQUIRED)
 
-# Include vcpkg toolchain file if not defined
-if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
-        CACHE STRING "Vcpkg toolchain file")
-endif()
+add_executable(OSTIA_tests
+    test_main.cpp
+    test_command_processor.cpp
+    ../src/core/CommandProcessor.cpp
+)
 
-project(OSTIA VERSION 1.0)
+target_link_libraries(OSTIA_tests PRIVATE doctest::doctest)
+target_include_directories(OSTIA_tests PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src
+    "C:/Users/jayab/dev-tools/vcpkg/installed/x64-windows/include"
+)
 
-# Specify the C++ standard
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# Add the executable
-add_executable(ostia src/main.cpp)
+add_test(NAME OSTIA_unit_tests COMMAND OSTIA_tests)
